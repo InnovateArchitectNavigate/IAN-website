@@ -149,34 +149,34 @@ export default function Home() {
 function AscendingLabels({ scrollProgress }: { scrollProgress: number }) {
   const labels = [
     {
-      progress: 0.06,
-      text: "LUMBAR — STRUCTURAL FOUNDATION",
-      sub: "Load-bearing architecture",
-      side: "right" as const,
-    },
-    {
-      progress: 0.22,
-      text: "THORACIC — POWER CORE",
-      sub: "Biomechanical engineering",
+      progress: 0.08,
+      text: "INNOVATE — WE IMPLEMENT",
+      sub: "The biggest risk is not taking any risk",
       side: "left" as const,
     },
     {
-      progress: 0.42,
-      text: "CERVICAL — SIGNAL RELAY",
-      sub: "Neural-mechanical interface",
-      side: "right" as const,
-    },
-    {
-      progress: 0.62,
-      text: "CORTICAL — INTELLIGENCE LAYER",
-      sub: "Cognitive architecture",
+      progress: 0.12,
+      text: "ARCHITECT — EVOLVING SYSTEMS",
+      sub: "By dint of building well, you get to be a good architect",
       side: "left" as const,
     },
     {
-      progress: 0.8,
-      text: "APEX — NEURAL CROWN",
-      sub: "Consciousness substrate",
-      side: "right" as const,
+      progress: 0.16,
+      text: "NAVIGATE — TRAVERSE THROUGH YOUR IMMAGINATION",
+      sub: "I may not have gone where I intended to go, but I think I have ended up where I needed to be",
+      side: "left" as const,
+    },
+    {
+      progress: 0.2,
+      text: "YOU'VE GOT THE BACKBONE",
+      sub: "you are fierce",
+      side: "left" as const,
+    },
+    {
+      progress: 0.24,
+      text: "YOU'VE GOT THE BRAIN",
+      sub: "...and you know exatcly what you're doing",
+      side: "left" as const,
     },
   ];
 
@@ -184,7 +184,7 @@ function AscendingLabels({ scrollProgress }: { scrollProgress: number }) {
     <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 5 }}>
       {labels.map((label, i) => {
         const start = label.progress;
-        const end = label.progress + 0.16;
+        const end = label.progress + 0.04;
         const isVisible = scrollProgress >= start && scrollProgress < end;
         const fadeIn = Math.min((scrollProgress - start) / 0.04, 1);
         const fadeOut = Math.min((end - scrollProgress) / 0.04, 1);

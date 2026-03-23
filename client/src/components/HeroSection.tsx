@@ -68,7 +68,7 @@ export default function HeroSection({ scrollProgress }: HeroSectionProps) {
               color: "rgba(68,136,255,0.7)",
             }}
           >
-            INTELLIGENCE · ARCHITECTURE · NOW
+            INNOVATE · ARCHITECT · NAVIGATE
           </span>
         </div>
 
@@ -87,7 +87,7 @@ export default function HeroSection({ scrollProgress }: HeroSectionProps) {
             textShadow: "0 0 120px rgba(68,136,255,0.12)",
           }}
         >
-          IAN
+          [IAN]
         </h1>
 
         {/* Tagline */}
@@ -174,7 +174,7 @@ export default function HeroSection({ scrollProgress }: HeroSectionProps) {
             lineHeight: 1.8,
           }}
         >
-          CREATIVE TECHNOLOGY<br />STUDIO
+          CREATIVE<br/>TECHNOLOGY<br />STUDIO
         </div>
         <div
           style={{
@@ -192,7 +192,7 @@ export default function HeroSection({ scrollProgress }: HeroSectionProps) {
             color: "rgba(220,230,255,0.6)",
           }}
         >
-          IAN
+          [IAN]
         </div>
       </div>
     </div>

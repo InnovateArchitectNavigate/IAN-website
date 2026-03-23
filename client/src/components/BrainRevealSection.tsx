@@ -277,9 +277,9 @@ export default function BrainRevealSection({ isVisible, scrollProgress }: BrainR
             transition: "opacity 0.8s ease 0.2s",
           }}
         >
-          Traversing the
+          Let's build
           <br />
-          <span style={{ color: "#aa44ff" }}>neural architecture</span>
+          <span style={{ color: "#aa44ff" }}>your ideas</span>
         </h2>
 
         <BrainTraversal isVisible={isVisible} scrollProgress={brainProgress} />

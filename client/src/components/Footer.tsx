@@ -37,7 +37,7 @@ export default function Footer() {
                 marginBottom: "0.75rem",
               }}
             >
-              IAN
+              [IAN]
             </div>
             <p
               style={{
@@ -49,7 +49,7 @@ export default function Footer() {
                 lineHeight: 1.6,
               }}
             >
-              Intelligence. Architecture. Now.
+              Innovate. Architect. Navigate.
               <br />
               A creative technology studio.
             </p>

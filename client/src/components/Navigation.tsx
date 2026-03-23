@@ -108,7 +108,7 @@ export default function Navigation() {
             color: "rgba(220,230,255,0.9)",
           }}
         >
-          IAN
+          [IAN]
         </span>
       </a>
 

@@ -187,7 +187,7 @@ export default function BiomechanicalScene({
 			});
 		}
 
-		const PARTICLE_COUNT = 800;
+		const PARTICLE_COUNT = 300;
 		const pPositions = new Float32Array(PARTICLE_COUNT * 3);
 		const pColors = new Float32Array(PARTICLE_COUNT * 3);
 
@@ -297,11 +297,11 @@ export default function BiomechanicalScene({
 		);
 
 		function updateSpiralCamera(progress: number) {
-			const startY = -12;
-			const endY = 20;
+			const startY = 8;
+			const endY = 22;
 			const y = THREE.MathUtils.lerp(startY, endY, progress);
 
-			const spiralTurns = 1.8;
+			const spiralTurns = 3;
 			const angle = progress * spiralTurns * Math.PI * 2;
 			const radius = THREE.MathUtils.lerp(8.5, 4.2, progress);
 
@@ -312,7 +312,7 @@ export default function BiomechanicalScene({
 
 			const lookTarget = new THREE.Vector3(
 				0,
-				THREE.MathUtils.lerp(-4, brainTarget.y - 1, progress),
+				THREE.MathUtils.lerp(8, brainTarget.y - 1, progress),
 				0
 			);
 			camera1.lookAt(lookTarget);

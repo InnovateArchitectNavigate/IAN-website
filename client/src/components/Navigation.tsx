@@ -82,17 +82,9 @@ export default function Navigation() {
             transition: "all 0.3s",
           }}
         >
-          <span
-            style={{
-              fontFamily: "Syne, sans-serif",
-              fontSize: "0.875rem",
-              fontWeight: 800,
-              color: "rgba(68,136,255,0.9)",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            I
-          </span>
+          <img src="https://res.cloudinary.com/soggy-ink-games/image/upload/v1774267422/IAN_-logo_bbwviz.svg" alt="" className="" >
+
+          </img>
           {/* Corner accent */}
           <div
             className="absolute -top-px -right-px w-1.5 h-1.5"

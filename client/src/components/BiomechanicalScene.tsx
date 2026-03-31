@@ -105,6 +105,7 @@ export default function BiomechanicalScene({
 		const modelCenter = new THREE.Vector3();
 		const modelSize = new THREE.Vector3();
 		const brainTarget = new THREE.Vector3(0, 8, 0);
+		const brainTargetZoomOut = new THREE.Vector3(0, 3, 0);
 
 		const ambientLight = new THREE.AmbientLight(0x0a0a18, 0.8);
 		scene.add(ambientLight);
@@ -264,7 +265,9 @@ export default function BiomechanicalScene({
 			modelBounds.getSize(modelSize);
 
 			const topY = modelBounds.max.y;
-			brainTarget.set(0, topY + 1.35, 0);
+			brainTarget.set(0, topY + .1, 0);
+			
+			brainTargetZoomOut.set(0, topY - 20, 50);
 		}
 
 		const dracoLoader = new DRACOLoader();
@@ -272,7 +275,6 @@ export default function BiomechanicalScene({
 
 		const gltfLoader = new GLTFLoader();
 		gltfLoader.setDRACOLoader(dracoLoader);
-
 		gltfLoader.load(
 			"https://res.cloudinary.com/soggy-ink-games/image/upload/v1774034309/spine_ir6fuh.glb",
 			(gltf) => {
@@ -281,19 +283,38 @@ export default function BiomechanicalScene({
 				fitSpineModel(spineRoot);
 				spineGroup.add(spineRoot);
 
-				const brainGeo = new THREE.IcosahedronGeometry(1.2, 4);
-				brainObject = new THREE.Mesh(brainGeo, brainMaterial);
-				brainObject.position.copy(brainTarget);
-				brainObject.castShadow = true;
-				brainObject.receiveShadow = true;
-				spineGroup.add(brainObject);
+				// Now load the Snake Brain using the calculated brainTarget
+				gltfLoader.load(
+					"https://res.cloudinary.com/soggy-ink-games/image/upload/v1774934311/snake-brain_aqtzve.glb",
+					(brainGltf) => {
+						const brainScene = brainGltf.scene;
 
-				camera2.lookAt(brainTarget);
+						// Apply materials and shadows to all meshes in the brain GLB
+						brainScene.traverse((node) => {
+							if ((node as THREE.Mesh).isMesh) {
+								const mesh = node as THREE.Mesh;
+								mesh.material = brainMaterial;
+								mesh.castShadow = true;
+								mesh.receiveShadow = true;
+							}
+						});
+
+						// Position the brain group
+						brainScene.position.copy(brainTarget);
+						spineGroup.add(brainScene);
+
+						// Store reference for the animation loop
+						// Note: brainObject is now typed as THREE.Object3D | null
+						brainObject = brainScene as any;
+
+						camera2.lookAt(brainTargetZoomOut);
+					},
+					undefined,
+					(error) => console.error("Failed to load snake-brain:", error)
+				);
 			},
 			undefined,
-			(error) => {
-				console.error("Failed to load GLB spine:", error);
-			}
+			(error) => console.error("Failed to load spine:", error)
 		);
 
 		function updateSpiralCamera(progress: number) {
@@ -328,8 +349,8 @@ export default function BiomechanicalScene({
 			const endOffset = new THREE.Vector3(0, 8.5, 0);
 
 			const angle = THREE.MathUtils.lerp(0, Math.PI * 0.5, progress);
-			const radiusY = 8.5;
-			const radiusX = 4.5;
+			const radiusY = 33.5;
+			const radiusX = 33.5;
 
 			const offset = new THREE.Vector3(
 				Math.cos(angle) * radiusX,
@@ -354,12 +375,12 @@ export default function BiomechanicalScene({
 				onUpdate: (self) => {
 					const progress = self.progress;
 
-					if (progress <= 0.82) {
+					if (progress <= 0.90) {
 						activeCamera = camera1;
-						updateSpiralCamera(progress / 0.82);
+						updateSpiralCamera(progress / 0.90);
 					} else {
 						activeCamera = camera2;
-						updateBrainTransitionCamera((progress - 0.82) / 0.18);
+						updateBrainTransitionCamera((progress - 0.90) / 0.1);
 					}
 
 					onScrollProgress?.(progress);
@@ -398,9 +419,9 @@ export default function BiomechanicalScene({
 			}
 
 			if (brainObject) {
-				brainObject.rotation.x += 0.0015;
-				brainObject.rotation.y += 0.0022;
-				const pulse = 1 + Math.sin(elapsed * 1.2) * 0.04;
+				// brainObject.rotation.x += 0.0015;
+				// brainObject.rotation.y += 0.0022;
+				const pulse = 8 + Math.sin(elapsed * 1.2) * 0.04;
 				brainObject.scale.setScalar(pulse);
 			}
 

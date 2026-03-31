@@ -19,6 +19,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BiomechanicalScene from "@/components/BiomechanicalScene";
 import HeroSection from "@/components/HeroSection";
 import BrainRevealSection from "@/components/BrainRevealSection";
+import BrainTraversal from "@/components/BrainTraversal"
 import DomainSections from "@/components/DomainSections";
 import TubeSection from "@/components/TubeSection";
 import ContactSection from "@/components/ContactSection";
@@ -121,10 +122,14 @@ export default function Home() {
         style={{ height: "250vh" }}
       >
         <div className="sticky top-0 h-screen overflow-hidden">
-          <BrainRevealSection
+          {/* <BrainRevealSection
             isVisible={brainVisible}
             scrollProgress={brainSectionProgress}
-          />
+          /> */}
+          <BrainTraversal 
+            isVisible={brainVisible}
+            scrollProgress={brainSectionProgress} >
+          </BrainTraversal>
         </div>
       </div>
 
